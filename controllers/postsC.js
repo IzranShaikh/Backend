@@ -1,5 +1,4 @@
 const Post = require('../models/postM');
-const User = require('../models/userM');
 
 require('mongoose').connect("mongodb+srv://NEON:" + process.env.DB_PASS + "@nodeproject1.73asn.mongodb.net/storeshare?retryWrites=true&w=majority", { useUnifiedTopology: true, useNewUrlParser: true })
 .then(() => {
