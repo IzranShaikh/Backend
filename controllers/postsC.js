@@ -18,7 +18,6 @@ exports.getAllPosts = (req, res) => {
     } else {
         postQuery = Post.find({ creator: req.query.onlyPublic }).select('title content visible').populate('creator', 'username'); //fetch for myuploads page
     }
-//     postQuery = Post.find({ visible: "public" }).select('title content visible creator').populate("creator", "username"); //fetch for homepage
     Post.countDocuments().then((count) => {
         totalPosts = count;
         if (currentPage && pageSize) {
