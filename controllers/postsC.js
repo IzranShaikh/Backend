@@ -13,12 +13,12 @@ exports.getAllPosts = (req, res) => {
     const currentPage = +req.query.page;
     let postQuery;
     let totalPosts = 0;
-    // if (req.query.onlyPublic == "public") {
-    //     postQuery = Post.find({ visible: "public" }).select('title content visible creator').populate('creator', 'username'); //fetch for homepage
-    // } else {
-    //     postQuery = Post.find({ creator: req.query.onlyPublic }).select('title content visible').populate('creator', 'username'); //fetch for myuploads page
-    // }
-    postQuery = Post.find({ visible: "public" }).select('title content visible creator').populate("creator", "username"); //fetch for homepage
+    if (req.query.onlyPublic == "public") {
+        postQuery = Post.find({ visible: "public" }).select('title content visible creator').populate('creator', 'username'); //fetch for homepage
+    } else {
+        postQuery = Post.find({ creator: req.query.onlyPublic }).select('title content visible').populate('creator', 'username'); //fetch for myuploads page
+    }
+//     postQuery = Post.find({ visible: "public" }).select('title content visible creator').populate("creator", "username"); //fetch for homepage
     Post.countDocuments().then((count) => {
         totalPosts = count;
         if (currentPage && pageSize) {
